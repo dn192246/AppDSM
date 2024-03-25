@@ -26,3 +26,4 @@ Adaptar — remezclar, transformar y construir a partir del material
 La licenciante no puede revocar estas libertades en tanto usted siga los términos de la licencia
 
 ## Enlaces de interés 
+* [UX/UI Mockups] https://www.figma.com/file/AyAEGOuDlOMQ890mZsZPs3/DSM-Proyecto-Veterinaria?type=design&node-id=0%3A1&mode=design&t=QBfhg8YStL5hIxJf-1 
