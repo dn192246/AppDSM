@@ -1,9 +1,10 @@
 # AppDSM
-Proyecto de Cátedra DSM941
+Proyecto de Cátedra DSM941 Creacion de una aplicacion movil para gestion de consultas para una veterinaria
 
 ## Herramientas ⚒️
 
 * [Kotlin] https://kotlinlang.org/
+* [Figma] https://www.figma.com/
 
 ## Autores ©️
 
@@ -26,4 +27,7 @@ Adaptar — remezclar, transformar y construir a partir del material
 La licenciante no puede revocar estas libertades en tanto usted siga los términos de la licencia
 
 ## Enlaces de interés 
+* [UX / UI Muck ups] https://www.figma.com/file/AyAEGOuDlOMQ890mZsZPs3/DSM-Proyecto-Veterinaria?type=design&node-id=0%3A1&mode=design&t=QBfhg8YStL5hIxJf-1
+* [Documento Fase I]  https://udbedu-my.sharepoint.com/:w:/g/personal/hf171856_alumno_udb_edu_sv/EULFES3K1KtFmkzy62gRPRUBkY4lJ0Nbjro7ultJgw-pxw
+* [Trello] 
 
