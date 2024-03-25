@@ -8,8 +8,11 @@ Proyecto de Cátedra DSM941
 ## Autores ©️
 
 **Ricardo Arturo De Paz Núñez (DN192246)**
+
 **Kevin Alexander Fernández Monge (FM150385)**
+
 **Julio Danilo Flores Fuentes (FF201999)**
+
 **Christian Alexander Hernández Funes (HF171856)**
 
 ## Licencia 
