@@ -23,7 +23,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CRUDTheme {
-                //AppNavigator();
                 SplashScreenLauncher();
             }
         }
@@ -32,7 +31,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun SplashScreenLauncher(){
-    val navController = rememberNavController()
     var showSplashScreen by remember { mutableStateOf(true) }
     LaunchedEffect(key1 = true) {
         delay(3000)
@@ -49,23 +47,24 @@ fun SplashScreenLauncher(){
         }
     }
     else{
-        AppNavigator(navController = navController)
+        AppNavigator()
     }
 
 
 }
 
 @Composable
-fun AppNavigator(navController: NavHostController) {
+fun AppNavigator() {
+    val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "main_screen"){
         composable("main_screen") {
-            MainScreen(navController, "Ricardo")
+            MainScreen(navController)
         }
-        composable("second_screen") {
-            SecondScreen(navController)
+        composable("login_screen") {
+            LoginScreen(navController)
         }
-        composable("third_screen"){
-            TerceraPantalla(navController)
+        composable("dashboard_screen"){
+            DashboardScreen(navController)
         }
     }
 }
