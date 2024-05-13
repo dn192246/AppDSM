@@ -31,3 +31,7 @@ La licenciante no puede revocar estas libertades en tanto usted siga los términ
 * [Documento Fase I]  https://udbedu-my.sharepoint.com/:w:/g/personal/hf171856_alumno_udb_edu_sv/EULFES3K1KtFmkzy62gRPRUBkY4lJ0Nbjro7ultJgw-pxw
 * [Trello] 
 
+## Fase II
+
+* https://youtu.be/7HKhTaSKik0 (Video Explicativo)
+* [Documento Fase II]: Manual Tecnico y Usuario (adjunto en Repositorio)
