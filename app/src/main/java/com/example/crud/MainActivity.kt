@@ -66,6 +66,9 @@ fun AppNavigator() {
         composable("dashboard_screen"){
             DashboardScreen(navController)
         }
+        composable("dateinfo_screen"){
+            DateInfoScreen(navController)
+        }
     }
 }
 

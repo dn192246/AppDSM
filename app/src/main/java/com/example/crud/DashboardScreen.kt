@@ -6,15 +6,21 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -31,7 +37,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun DashboardScreen(navController: NavController){
-    val botones = ButtonDefaults.buttonColors(
+    val coloresBotones = ButtonDefaults.buttonColors(
         containerColor = Color(0xF6F6F6),
         contentColor = Color.Black
     )
@@ -43,7 +49,8 @@ fun DashboardScreen(navController: NavController){
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 30.dp),
+                .padding(top = 30.dp)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -90,7 +97,7 @@ fun DashboardScreen(navController: NavController){
                         //Botón Buscar
                         Button(
                             onClick = { /*TODO*/ },
-                            colors = botones
+                            colors = coloresBotones
                         ) {
                             Column (
                                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -108,7 +115,7 @@ fun DashboardScreen(navController: NavController){
                         //Botón Editar
                         Button(
                             onClick = { /*TODO*/ },
-                            colors = botones
+                            colors = coloresBotones
                         ) {
                             Column (
                                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -126,7 +133,7 @@ fun DashboardScreen(navController: NavController){
                         //Botón Agregar
                         Button(
                             onClick = { /*TODO*/ },
-                            colors = botones
+                            colors = coloresBotones
                         ){
                             Column (
                                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -138,6 +145,202 @@ fun DashboardScreen(navController: NavController){
                                     modifier = Modifier.size(60.dp)
                                 )
                                 Text(text = "Agregar", style = TextStyle(fontSize = 20.sp))
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(text = "Próximas Citas",
+                            style = TextStyle(fontSize = 20.sp, textAlign = TextAlign.Start)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    //Tarjeta de Cita Próxima
+                    Button(
+                        onClick = { navController.navigate("dateinfo_screen") },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color.DarkGray
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(15.dp,0.dp),
+                        shape = RoundedCornerShape(0.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(imageVector = Icons.Filled.Person,
+                                contentDescription = "Avatar",
+                                tint= Color.Black,
+                                modifier = Modifier.size(48.dp).weight(0.2f)
+                            )
+
+                            Spacer(modifier = Modifier.width(12.dp))
+                            
+                            Text(
+                                text = "Carmen Gutiérrez",
+                                style = TextStyle(color = Color.Gray),
+                                fontSize = 20.sp,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.weight(0.5f)
+                            )
+
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Column (
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.weight(0.3f)
+                            ){
+                                
+                                Icon(imageVector = Icons.Filled.DateRange,
+                                    contentDescription = "Calendar",
+                                    tint= Color.Black,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Spacer(modifier = Modifier.height(24.dp))
+                                
+                                Text(text = "3 Abril 2024",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 24.sp,
+                                    textAlign = TextAlign.Center)
+
+                                Spacer(modifier = Modifier.height(18.dp))
+
+                                Text(text = "10:00 AM",
+                                    fontWeight = FontWeight.Light,
+                                    fontSize = 18.sp,
+                                    textAlign = TextAlign.Center)
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    //Tarjeta de Cita Próxima
+                    Button(
+                        onClick = { navController.navigate("dateinfo_screen") },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color.DarkGray
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(15.dp,0.dp),
+                        shape = RoundedCornerShape(0.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(imageVector = Icons.Filled.Person,
+                                contentDescription = "Avatar",
+                                tint= Color.Black,
+                                modifier = Modifier.size(48.dp).weight(0.2f)
+                            )
+
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Text(
+                                text = "Carmen Gutiérrez",
+                                style = TextStyle(color = Color.Gray),
+                                fontSize = 20.sp,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.weight(0.5f)
+                            )
+
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Column (
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.weight(0.3f)
+                            ){
+
+                                Icon(imageVector = Icons.Filled.DateRange,
+                                    contentDescription = "Calendar",
+                                    tint= Color.Black,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Spacer(modifier = Modifier.height(24.dp))
+
+                                Text(text = "3 Abril 2024",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 24.sp,
+                                    textAlign = TextAlign.Center)
+
+                                Spacer(modifier = Modifier.height(18.dp))
+
+                                Text(text = "10:00 AM",
+                                    fontWeight = FontWeight.Light,
+                                    fontSize = 18.sp,
+                                    textAlign = TextAlign.Center)
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    //Tarjeta de Cita Próxima
+                    Button(
+                        onClick = { navController.navigate("dateinfo_screen") },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color.DarkGray
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(15.dp,0.dp),
+                        shape = RoundedCornerShape(0.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(imageVector = Icons.Filled.Person,
+                                contentDescription = "Avatar",
+                                tint= Color.Black,
+                                modifier = Modifier.size(48.dp).weight(0.2f)
+                            )
+
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Text(
+                                text = "Carmen Gutiérrez",
+                                style = TextStyle(color = Color.Gray),
+                                fontSize = 20.sp,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.weight(0.5f)
+                            )
+
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Column (
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.weight(0.3f)
+                            ){
+
+                                Icon(imageVector = Icons.Filled.DateRange,
+                                    contentDescription = "Calendar",
+                                    tint= Color.Black,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Spacer(modifier = Modifier.height(24.dp))
+
+                                Text(text = "3 Abril 2024",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 24.sp,
+                                    textAlign = TextAlign.Center)
+
+                                Spacer(modifier = Modifier.height(18.dp))
+
+                                Text(text = "10:00 AM",
+                                    fontWeight = FontWeight.Light,
+                                    fontSize = 18.sp,
+                                    textAlign = TextAlign.Center)
                             }
                         }
                     }

@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -136,6 +137,34 @@ fun LoginScreen(navController: NavController){
                                 fontWeight = FontWeight.Bold
                             )
                         )
+                    }
+
+                    //Botón para Entrar con Google
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    Button(
+                        onClick = { /* */},
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF007EA7),
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.fillMaxWidth()
+                        ){
+
+                            Image(painter = painterResource(id = R.drawable.google), contentDescription = "Google")
+
+                            Text(
+                                text= "Acceder con Google",
+                                style = TextStyle(
+                                    fontSize = 22.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            )
+                        }
                     }
 
                     //Botón para Registrarse
