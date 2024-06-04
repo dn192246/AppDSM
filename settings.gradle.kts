@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CRUD"
+rootProject.name = "appDSM"
 include(":app")
  

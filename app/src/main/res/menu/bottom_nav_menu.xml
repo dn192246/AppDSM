@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/inicio"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/doctores"
+        android:icon="@drawable/doctor"
+        android:title="Doctores" />
+
+    <item
+        android:id="@+id/pacientes"
+        android:icon="@drawable/paciente"
+        android:title="Pacientes" />
+    <item
+        android:id="@+id/citas"
+        android:icon="@drawable/citas"
+        android:title="Citas" />
+</menu>

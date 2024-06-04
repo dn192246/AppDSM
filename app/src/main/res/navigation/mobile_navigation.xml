@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/inicio">
+
+    <fragment
+        android:id="@+id/inicio"
+        android:name="santa.barbara.appdsm.Inicio"
+        android:label="inicio"
+        tools:layout="@layout/fragment_inicio" />
+    <fragment
+        android:id="@+id/doctores"
+        android:name="santa.barbara.appdsm.doctores"
+        android:label="doctores"
+        tools:layout="@layout/fragment_doctores" >
+    <action
+        android:id="@+id/action_doctores_to_add_doctor"
+        app:destination="@id/agregar_doctores" />
+    </fragment>
+    <fragment
+        android:id="@+id/pacientes"
+        android:name="santa.barbara.appdsm.pacientes"
+        android:label="fragment_pacientes"
+        tools:layout="@layout/fragment_pacientes" >
+        <action
+            android:id="@+id/action_pacientes_to_add_pacientes"
+            app:destination="@id/agregar_pacientes" />
+    </fragment>
+    <fragment
+        android:id="@+id/citas"
+        android:name="santa.barbara.appdsm.citas"
+        android:label="citas"
+        tools:layout="@layout/fragment_citas">
+        <action
+            android:id="@+id/action_citas_to_add_citas"
+            app:destination="@id/agregar_citas" />
+    </fragment>
+    <fragment
+        android:id="@+id/agregar_doctores"
+        android:name="santa.barbara.appdsm.agregar_doctores"
+        android:label="fragment_agregar_doctores"
+        tools:layout="@layout/fragment_agregar_doctores" />
+    <fragment
+        android:id="@+id/agregar_citas"
+        android:name="santa.barbara.appdsm.agregar_citas"
+        android:label="fragment_agregar_citas"
+        tools:layout="@layout/fragment_agregar_citas" />
+    <fragment
+        android:id="@+id/agregar_pacientes"
+        android:name="santa.barbara.appdsm.agregar_pacientes"
+        android:label="fragment_agregar_pacientes"
+        tools:layout="@layout/fragment_agregar_pacientes" />
+</navigation>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/purple_700</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/purple_700</item>
+    </style>
+
+    <!-- Custom AlertDialog theme -->
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColorPrimary">@color/purple_700</item>
+        <item name="android:textColorSecondary">@color/purple_700</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/CustomDialogButton</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/CustomDialogButton</item>
+    </style>
+
+    <!-- Custom dialog button style -->
+    <style name="CustomDialogButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/purple_700</item>
+        <item name="android:padding">15dp</item>
+    </style>
+
+    <!-- AlertDialog Title -->
+    <style name="AlertDialogTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:titleMarginBottom">35dp</item>
+        <item name="android:layout_marginBottom">35dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/purple_700</item>
+    </style>
+
+</resources>
