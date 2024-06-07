@@ -6,5 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import santa.barbara.appdsm.R
 
 class ViewHolderCitas(view: View) : RecyclerView.ViewHolder(view) {
-    val lblCitaCard: TextView = view.findViewById(R.id.lblCitaCard)
+    val lblPacienteCita: TextView = view.findViewById(R.id.lblPacienteCita)
+    val lblFechaCita: TextView = view.findViewById(R.id.lblFechaCita)
+    val lblHoraCita: TextView = view.findViewById(R.id.lblHoraCita)
 }

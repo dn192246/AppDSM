@@ -26,5 +26,9 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations
         navView.setupWithNavController(navController)
+
+        if (intent.getBooleanExtra("ir_a_agregar_citas", false)) {
+            navController.navigate(R.id.agregar_citas)
+        }
     }
 }

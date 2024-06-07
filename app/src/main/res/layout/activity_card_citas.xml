@@ -1,44 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    android:id="@+id/cardview"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="20dp"
-    app:cardUseCompatPadding="true"
-    app:contentPadding="15dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/lblCitaCard"
-            android:layout_width="230dp"
-            android:layout_height="match_parent"
-            android:text="Cita"
-            android:textSize="34sp" />
-
-        <ImageView
-            android:id="@+id/imgEditarCitas"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:adjustViewBounds="true"
-            android:cropToPadding="false"
-            app:srcCompat="@drawable/ic_editar" />
-
-        <ImageView
-            android:id="@+id/imgBorrarCitas"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="10dp"
+            android:layout_height="87dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_card">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="1dp"
+                android:layout_height="87dp"
+                android:layout_weight="1"
+                android:background="@drawable/linea_gris"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/lblFechaCita"
+                app:layout_constraintStart_toEndOf="@+id/lblPacienteNombre"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/lblPacienteCita"
+                android:layout_width="222dp"
+                android:layout_height="25dp"
+                android:paddingLeft="15dp"
+                android:paddingBottom="4dp"
+                android:text="Nombre del paciente"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/lblFechaCita"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.862"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_calendario_negro" />
+
+            <TextView
+                android:id="@+id/lblFechaCita"
+                android:layout_width="112dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="36dp"
+                android:text="Fecha"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/lblPacienteNombre"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lblHoraCita"
+                android:layout_width="110dp"
+                android:layout_height="18dp"
+                android:text="Hora"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.538"
+                app:layout_constraintStart_toEndOf="@+id/lblPacienteNombre"
+                app:layout_constraintTop_toBottomOf="@+id/lblFechaCita"
+                app:layout_constraintVertical_bias="0.133" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/ic_borrar" />
+            android:gravity="center_vertical"
+            android:orientation="vertical"/>
 
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

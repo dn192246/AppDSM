@@ -5,6 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import santa.barbara.appdsm.citasHelper.AdaptadorCitas
+import santa.barbara.appdsm.citasHelper.tbCitas
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +25,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Inicio : Fragment() {
+    val datos = mutableListOf<tbCitas>()
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -33,8 +42,54 @@ class Inicio : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio, container, false)
+
+        val root = inflater.inflate(R.layout.fragment_inicio, container, false)
+
+        val rcvProximasCitas = root.findViewById<RecyclerView>(R.id.rcvProximasCitas)
+        rcvProximasCitas.layoutManager = LinearLayoutManager(requireContext())
+
+
+        val referencia = FirebaseDatabase.getInstance().getReference("citas")
+
+        /////Mostrar datos de Doctores/////
+        fun obtenerDatos(): List<tbCitas> {
+            referencia.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    datos.clear()
+                    for (dataSnapshot in snapshot.children) {
+                        val id = snapshot.key
+                        val cita = snapshot.getValue(tbCitas::class.java)
+                        val myid = dataSnapshot.child("id").value
+                        val fecha = dataSnapshot.child("fecha").value
+                        val hora = dataSnapshot.child("hora").value
+                        val paciente = dataSnapshot.child("paciente").value
+                        val doctor = dataSnapshot.child("doctor").value
+                        val motivo = dataSnapshot.child("motivo").value
+                        if (cita != null && id != null) {
+                            val citanueva = tbCitas(
+                                myid.toString(),
+                                fecha.toString(),
+                                hora.toString(),
+                                paciente.toString(),
+                                doctor.toString(),
+                                motivo.toString()
+                            )
+                            datos.add(citanueva)
+                        }
+                    }
+                    val adapter = AdaptadorCitas(datos)
+                    rcvProximasCitas.adapter = adapter
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    println("Error al mostrar citas: $error")
+                }
+            })
+            return datos
+        }
+        obtenerDatos()
+
+
+        return root
     }
 
     companion object {

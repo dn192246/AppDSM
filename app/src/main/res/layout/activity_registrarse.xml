@@ -20,12 +20,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+        <ImageView
+            android:id="@+id/imgAtrasregistrarse"
+            android:layout_width="48dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="53dp"
+            android:layout_marginBottom="54dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.043"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_back_white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="395dp"
+        android:layout_height="642dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="12dp"
@@ -50,14 +63,15 @@
             app:layout_constraintBottom_toTopOf="@+id/txtCorreo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.344" />
 
         <EditText
             android:id="@+id/txtCorreo"
             android:layout_width="350dp"
             android:layout_height="60dp"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="146dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="96dp"
             android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:hint="Correo electronico"
@@ -65,6 +79,7 @@
             android:paddingLeft="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <EditText
             android:id="@+id/txtPassword"
@@ -75,25 +90,39 @@
             android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:hint="Contraseña"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:paddingLeft="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtConfirmarPassword"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCorreo" />
+            app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
+            app:layout_constraintVertical_bias="0.037" />
+
+        <EditText
+            android:id="@+id/txtConfirmarPassword"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:hint="Confirmar Contraseña"
+            android:inputType="textPassword"
+            android:paddingLeft="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnCrearCuenta"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btnCrearCuenta"
             android:layout_width="307dp"
             android:layout_height="55dp"
+            android:layout_marginBottom="188dp"
             android:background="@drawable/login_button"
             android:text="Crear cuenta"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPassword"
-            app:layout_constraintVertical_bias="0.104" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView19"
@@ -119,7 +148,30 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19"
-            app:layout_constraintVertical_bias="0.062" />
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imgVerPassword"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtPassword"
+            app:layout_constraintEnd_toEndOf="@+id/txtPassword"
+            app:layout_constraintTop_toTopOf="@+id/txtPassword"
+            app:layout_constraintVertical_bias="0.48"
+            app:srcCompat="@drawable/ic_ojo" />
+
+        <ImageView
+            android:id="@+id/imgVerConfirmacionPassword"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtConfirmarPassword"
+            app:layout_constraintEnd_toEndOf="@+id/txtConfirmarPassword"
+            app:layout_constraintTop_toTopOf="@+id/txtConfirmarPassword"
+            app:layout_constraintVertical_bias="0.56"
+            app:srcCompat="@drawable/ic_ojo" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

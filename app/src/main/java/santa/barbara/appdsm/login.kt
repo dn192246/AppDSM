@@ -84,6 +84,8 @@ class login : AppCompatActivity() {
                 }
             }
         }
+
+
         txtCorreoLogin.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 scrollView2.post {

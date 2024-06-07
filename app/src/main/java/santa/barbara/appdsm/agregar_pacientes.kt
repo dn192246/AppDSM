@@ -1,7 +1,15 @@
 package santa.barbara.appdsm
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,20 +18,37 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.google.firebase.Firebase
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.storage
 import santa.barbara.appdsm.pacientesHelper.tbPacientes
+import java.io.ByteArrayOutputStream
 import java.util.Calendar
+import java.util.UUID
 
 
 class agregar_pacientes : Fragment() {
+
+    private lateinit var imgAgregarFotoPaciente: ImageView
+    private lateinit var imgFotoPaciente: ImageView
+    private val REQUEST_IMAGE_CAPTURE = 1
+    private val REQUEST_CAMERA_PERMISSION = 100
+    val referencia = FirebaseDatabase.getInstance().getReference("pacientes")
+    val nuevoPacienteRef = referencia.push()
+    val nuevoPacienteId = nuevoPacienteRef.key
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +66,13 @@ class agregar_pacientes : Fragment() {
             root.findViewById<EditText>(R.id.txtFechaNacimientoPaciente)
         val txtHistorialMedicoPaciente =
             root.findViewById<EditText>(R.id.txtHistorialMedicoPaciente)
+
+        imgAgregarFotoPaciente = root.findViewById(R.id.imgAgregarFotoPaciente)
+        imgFotoPaciente = root.findViewById(R.id.imgFotoPaciente)
+
+        imgAgregarFotoPaciente.setOnClickListener {
+            abrirCamara()
+        }
 
         val imgAtrasPacientes = root.findViewById<ImageView>(R.id.imgAtrasPacientes)
         val btnCrearPaciente = root.findViewById<Button>(R.id.btnCrearPaciente)
@@ -80,9 +112,7 @@ class agregar_pacientes : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                val referencia = FirebaseDatabase.getInstance().getReference("pacientes")
-                val nuevoPacienteRef = referencia.push()
-                val nuevoPacienteId = nuevoPacienteRef.key
+
 
                 if (nuevoPacienteId != null) {
                     val nuevoPaciente = tbPacientes(
@@ -130,4 +160,51 @@ class agregar_pacientes : Fragment() {
 
         return root
     }
+
+    private fun abrirCamara() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        try {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+        } catch (e: ActivityNotFoundException) {
+           println("Error al abrir la cámara: $e")
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                abrirCamara()
+            } else {
+                Toast.makeText(requireContext(), "Permiso de la cámara denegado", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            subirimagenFirebase(imageBitmap)
+        }
+    }
+
+    private fun subirimagenFirebase(bitmap: Bitmap) {
+        val storageRef = Firebase.storage.reference
+        val imageRef = storageRef.child("images/${nuevoPacienteId}.jpg")
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+        val uploadTask = imageRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            Toast.makeText(requireContext(), "Error al subir la imagen", Toast.LENGTH_SHORT).show()
+        }.addOnSuccessListener { taskSnapshot ->
+            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                val imageUrl = uri.toString()
+                Glide.with(this).load(imageUrl).into(imgFotoPaciente)
+            }
+        }
+    }
+
+
+
 }

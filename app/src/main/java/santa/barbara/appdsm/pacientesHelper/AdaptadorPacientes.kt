@@ -66,7 +66,8 @@ class AdaptadorPacientes(private var Datos: MutableList<tbPacientes>) :
             )
             intent.putExtra(
                 "historialMedico",
-                item.historialMedico)
+                item.historialMedico
+            )
 
             context.startActivity(intent)
         }
