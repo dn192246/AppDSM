@@ -39,5 +39,5 @@ La licenciante no puede revocar estas libertades en tanto usted siga los términ
 
 ## Fase III
 
-* Pendiente (Video Explicativo)
+* https://drive.google.com/file/d/1suY1RtehGCSO6keV5nTGa_RW0eVfHhfS/view?usp=sharing (Video Explicativo)
 * [Documento Fase III]: Manual Tecnico y Usuario Final (adjunto en Repositorio)
