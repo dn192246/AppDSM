@@ -8,14 +8,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import santa.barbara.appdsm.citasHelper.tbCitas
 import santa.barbara.appdsm.doctoresHelper.tbDoctores
 import java.text.SimpleDateFormat
@@ -24,6 +30,13 @@ import java.util.Locale
 
 
 class agregar_citas : Fragment() {
+
+    private lateinit var txtDoctorCita: Spinner
+    private lateinit var databaseDoctores: DatabaseReference
+
+    private lateinit var txtPacienteCita: Spinner
+    private lateinit var databasePacientes: DatabaseReference
+
     fun showTimePickerDialog(textView: EditText) {
         val cal = Calendar.getInstance()
         val hour = cal.get(Calendar.HOUR_OF_DAY)
@@ -62,11 +75,13 @@ class agregar_citas : Fragment() {
         val imgAtras = root.findViewById<ImageView>(R.id.imgAtrasCitas)
         val txtfechaCita = root.findViewById<EditText>(R.id.txtFechaCita)
         val txtHoraCita = root.findViewById<EditText>(R.id.txtHoraCita)
-        val txtPacienteCita = root.findViewById<EditText>(R.id.txtPacienteCita)
-        val txtDoctorCita = root.findViewById<EditText>(R.id.txtDoctorCita)
+        txtPacienteCita = root.findViewById<Spinner>(R.id.txtPacienteCita)
+        txtDoctorCita = root.findViewById<Spinner>(R.id.txtDoctorCita)
         val txtMotivoCita = root.findViewById<EditText>(R.id.txtMotivoCita)
         val btnCrearCita = root.findViewById<Button>(R.id.btnCrearCita)
 
+        databaseDoctores = FirebaseDatabase.getInstance().reference.child("doctores")
+        databasePacientes = FirebaseDatabase.getInstance().reference.child("pacientes")
 
         //Mostrar el calendario al hacer click en el EditText txtFechaNacimientoPaciente
         txtfechaCita.setOnClickListener {
@@ -93,8 +108,6 @@ class agregar_citas : Fragment() {
         btnCrearCita.setOnClickListener {
 
             if (txtfechaCita.text.toString().isEmpty() || txtHoraCita.text.toString()
-                    .isEmpty() || txtPacienteCita.text.toString()
-                    .isEmpty() || txtDoctorCita.text.toString()
                     .isEmpty() || txtMotivoCita.text.toString().isEmpty()
             ) {
                 Toast.makeText(
@@ -112,15 +125,15 @@ class agregar_citas : Fragment() {
                         nuevaCitaId,
                         txtfechaCita.text.toString(),
                         txtHoraCita.text.toString(),
-                        txtPacienteCita.text.toString(),
-                        txtDoctorCita.text.toString(),
+                        txtPacienteCita.selectedItem.toString(),
+                        txtDoctorCita.selectedItem.toString(),
                         txtMotivoCita.text.toString()
                     )
                     nuevaCitaRef.setValue(nuevaCita).addOnSuccessListener {
                             txtfechaCita.text.clear()
                             txtHoraCita.text.clear()
-                            txtPacienteCita.text.clear()
-                            txtDoctorCita.text.clear()
+                            txtPacienteCita.setSelection(0)
+                            txtDoctorCita.setSelection(0)
                             txtMotivoCita.text.clear()
                             Toast.makeText(
                                 requireContext(),
@@ -137,7 +150,51 @@ class agregar_citas : Fragment() {
             imgAtras.setOnClickListener {
                 findNavController().navigateUp()
             }
+        loadDoctorNames()
+        loadPacienteNames()
 
             return root
         }
+
+    private fun loadDoctorNames() {
+        val doctorNames = mutableListOf<String>()
+
+        databaseDoctores.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                doctorNames.clear()
+                for (doctorSnapshot in snapshot.children) {
+                    val doctorName = doctorSnapshot.child("nombre").getValue(String::class.java)
+                    doctorName?.let { doctorNames.add(it) }
+                }
+                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, doctorNames)
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                txtDoctorCita.adapter = adapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Error loading doctors", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
+
+    private fun loadPacienteNames() {
+        val doctorNames = mutableListOf<String>()
+
+        databasePacientes.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                doctorNames.clear()
+                for (doctorSnapshot in snapshot.children) {
+                    val doctorName = doctorSnapshot.child("nombreMascota").getValue(String::class.java)
+                    doctorName?.let { doctorNames.add(it) }
+                }
+                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, doctorNames)
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                txtPacienteCita.adapter = adapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Error loading doctors", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+}

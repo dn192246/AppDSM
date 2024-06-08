@@ -2,6 +2,7 @@ package santa.barbara.appdsm
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -37,6 +38,7 @@ class login : AppCompatActivity() {
         val btnInicioSesionGoogle = findViewById<Button>(R.id.btnInicioSesionGoogle)
         val btnRegistrar = findViewById<Button>(R.id.btnRegistrarme)
         val scrollView2 = findViewById<ScrollView>(R.id.scrollView2)
+        val imgVerClaveLogin = findViewById<View>(R.id.imgVerClaveLogin)
 
         btnIngresar.setOnClickListener {
             val correo = txtCorreoLogin.text.toString().trim()
@@ -91,6 +93,15 @@ class login : AppCompatActivity() {
                 scrollView2.post {
                     scrollView2.scrollTo(0, btnInicioSesionGoogle.bottom)
                 }
+            }
+        }
+
+        imgVerClaveLogin.setOnClickListener {
+
+            if (txtPasswordLogin.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                txtPasswordLogin.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                txtPasswordLogin.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
         }
 

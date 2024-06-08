@@ -24,7 +24,7 @@ class AdaptadorDoctores(private var Datos: MutableList<tbDoctores>) :
                         if (dataSnapshot.child("nombre").value == Datos[position].nombre) {
                             dataSnapshot.ref.removeValue()
                                 .addOnSuccessListener {
-                                    println("Registro eliminado")
+                                    println("Doctor eliminado")
                                 }
                                 .addOnFailureListener { e ->
                                     println("Error al eliminar: $e")
@@ -60,7 +60,7 @@ class AdaptadorDoctores(private var Datos: MutableList<tbDoctores>) :
             val context = holder.itemView.context
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Confirmación")
-            builder.setMessage("¿Quieres eliminar este elemento?")
+            builder.setMessage("¿Quieres eliminar este doctor?")
 
             builder.setPositiveButton("Sí") { dialog, which ->
                 eliminar(position)

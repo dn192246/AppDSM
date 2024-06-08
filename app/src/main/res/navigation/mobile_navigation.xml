@@ -9,7 +9,14 @@
         android:id="@+id/inicio"
         android:name="santa.barbara.appdsm.Inicio"
         android:label="inicio"
-        tools:layout="@layout/fragment_inicio" />
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_inicio_to_add_pacientes"
+            app:destination="@id/agregar_pacientes" />
+        <action
+            android:id="@+id/action_inicio_to_pacientes"
+            app:destination="@id/pacientes" />
+    </fragment>
     <fragment
         android:id="@+id/doctores"
         android:name="santa.barbara.appdsm.doctores"

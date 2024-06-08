@@ -206,7 +206,6 @@ class detalle_paciente : AppCompatActivity() {
     }
     private fun loadPatientImage(imageView: ImageView) {
         storageReference.downloadUrl.addOnSuccessListener { uri ->
-            // Usa Glide para cargar la imagen en el ImageView
             Glide.with(this@detalle_paciente)
                 .load(uri)
                 .into(imageView)

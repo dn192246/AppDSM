@@ -122,7 +122,7 @@
             android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:hint="Teléfono"
-            android:inputType="text"
+            android:inputType="number"
             android:paddingLeft="16dp"
             app:layout_constraintBottom_toTopOf="@+id/btnCrearCita"
             app:layout_constraintEnd_toEndOf="parent"

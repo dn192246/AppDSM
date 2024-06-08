@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -45,9 +47,18 @@ class Inicio : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_inicio, container, false)
 
+        val btnIrAPacientes = root.findViewById<ImageView>(R.id.btnIrAPacientes)
+        val btnIraAgregarPaciente = root.findViewById<ImageView>(R.id.btnIraAgregarPaciente)
         val rcvProximasCitas = root.findViewById<RecyclerView>(R.id.rcvProximasCitas)
         rcvProximasCitas.layoutManager = LinearLayoutManager(requireContext())
 
+        btnIrAPacientes.setOnClickListener {
+            findNavController().navigate(R.id.action_inicio_to_pacientes)
+        }
+        //Al dar clic voy a la pantalla de agregar paciente
+        btnIraAgregarPaciente.setOnClickListener {
+            findNavController().navigate(R.id.action_inicio_to_add_pacientes)
+        }
 
         val referencia = FirebaseDatabase.getInstance().getReference("citas")
 

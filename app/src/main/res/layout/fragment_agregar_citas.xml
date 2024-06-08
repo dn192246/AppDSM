@@ -111,13 +111,18 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/txtPacienteCita"
                 android:layout_width="360dp"
                 android:layout_height="60dp"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
+                android:backgroundTintMode="add"
+                android:foreground="@drawable/ic_down_spinner"
+                android:foregroundGravity="center|right"
+                android:foregroundTint="#000000"
+                android:drawableRight="@drawable/ic_down_spinner"
                 android:hint="Paciente"
                 android:inputType="text"
                 android:paddingLeft="16dp"
@@ -126,7 +131,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/txtDoctorCita"
                 android:layout_width="360dp"
                 android:layout_height="60dp"
@@ -134,6 +139,11 @@
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
                 android:hint="Doctor"
+                android:backgroundTintMode="add"
+                android:foreground="@drawable/ic_down_spinner"
+                android:foregroundGravity="center|right"
+                android:foregroundTint="#000000"
+                android:drawableRight="@drawable/ic_down_spinner"
                 android:inputType="text"
                 android:paddingLeft="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/txtMotivoCita"
